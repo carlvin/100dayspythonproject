@@ -8,7 +8,7 @@ stages = ['''
         |
         |
  ============       
-''','''
+''', '''
     +---+
     |   |
         |
@@ -16,7 +16,7 @@ stages = ['''
         |
         |
  ============       
-''','''
+''', '''
     +---+
     |   |
     O   |
@@ -24,7 +24,7 @@ stages = ['''
         |
         |
  ============       
-''','''
+''', '''
     +---+
     |   |
     O   |
@@ -32,7 +32,7 @@ stages = ['''
         |
         |
  ============       
-''','''
+''', '''
     +---+
     |   |
     O   |
@@ -40,7 +40,7 @@ stages = ['''
        |
         |
  ============       
-''','''
+''', '''
     +---+
     |   |
     O   |
@@ -48,7 +48,7 @@ stages = ['''
    /    |
         |
  ============       
-''','''
+''', '''
     +---+
     |   |
     O   |
@@ -67,13 +67,15 @@ print(f'the chosen word is {chosen_word}')
 display = []
 loser_count = 10
 word_length = len(chosen_word)
+endgame = False
 
 
-def judge(x):
-    if x == 0:
-        print("you loose")
-    else:
+def judge():
+    if "_" not in display:
         print('you win')
+    else:
+        endgame = True
+        print("you loose")
 
 
 def empty_display(display, word_length):
@@ -85,11 +87,11 @@ def empty_display(display, word_length):
 
 empty_display(display, word_length)
 
-while "_" in display and loser_count != 0:
+while not endgame:
     guess = input('guess a letter \n').lower()
 
-    for position, letter in enumerate(chosen_word):
-        # letter = chosen_word[position]
+    for position in range(word_length):
+        letter = chosen_word[position]
 
         if letter == guess:
             # print(letter, position)
