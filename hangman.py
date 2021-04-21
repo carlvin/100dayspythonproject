@@ -2,42 +2,10 @@ import random
 
 stages = ['''
     +---+
-        |
-        |
-        |
-        |
-        |
- ============       
-''', '''
-    +---+
-    |   |
-        |
-        |
-        |
-        |
- ============       
-''', '''
-    +---+
-    |   |
-    O   |
-        |
-        |
-        |
- ============       
-''', '''
-    +---+
-    |   |
-    O   |
-    |\  |
-        |
-        |
- ============       
-''', '''
-    +---+
     |   |
     O   |
    /|\  |
-       |
+   / \  |
         |
  ============       
 ''', '''
@@ -53,7 +21,31 @@ stages = ['''
     |   |
     O   |
    /|\  |
-   / \  |
+       |
+        |
+ ============       
+''', '''
+    +---+
+    |   |
+    O   |
+    |\  |
+        |
+        |
+ ============       
+''', '''
+    +---+
+    |   |
+    O   |
+        |
+        |
+        |
+ ============       
+''', '''
+    +---+
+    |   |
+        |
+        |
+        |
         |
  ============       
 ''']
@@ -65,38 +57,39 @@ chosen_word = random.choice(word_list)
 print(f'the chosen word is {chosen_word}')
 
 display = []
-loser_count = 10
+wrong_guess = []
+lives = 6
 word_length = len(chosen_word)
-endgame = False
+# endgame = False
 
+# display dashes for each letter in chosen word
+for _ in range(word_length):
+    display.append("_")
 
-def judge():
-    if "_" not in display:
-        print('you win')
-    else:
-        endgame = True
-        print("you loose")
+# 2
+# prompt a user to guess a letter
+# store letter in variable guess and convert to lowercase
 
-
-def empty_display(display, word_length):
-    for _ in range(word_length):
-        display += "_"
-
-    print(display)
-
-
-empty_display(display, word_length)
-
-while not endgame:
-    guess = input('guess a letter \n').lower()
-
-    for position in range(word_length):
-        letter = chosen_word[position]
-
+# check for dashes and lives
+while "_" in display and lives != 0:
+    guess = input("Guess a letter \n").lower()
+    # check if guess exists in a chosen word
+    for position, letter in enumerate(chosen_word):
         if letter == guess:
-            # print(letter, position)
+            # print(f'yes{pos}')
             display[position] = letter
 
+    if guess not in chosen_word:
+        lives -= 1
+        wrong_guess.append(guess)
+        print(stages[lives])
     print(display)
+    print(f'Guessed Letters: {wrong_guess}')
 
-judge(loser_count)
+if "_" not in display:
+    print('you win!')
+else:
+    print("you lose!")
+    print(f'the correct word was: {chosen_word}')
+
+
