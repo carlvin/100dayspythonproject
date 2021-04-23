@@ -89,7 +89,7 @@ while "_" in display and lives != 0:
 if "_" not in display:
     print('you win!')
 else:
-    print("you lose!")
+    print("Game Over,You lost!")
     print(f'the correct word was: {chosen_word}')
 
 
