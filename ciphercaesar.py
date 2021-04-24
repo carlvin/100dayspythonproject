@@ -1,17 +1,19 @@
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+            'v', 'w', 'x', 'y', 'z','a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
             'v', 'w', 'x', 'y', 'z']
 finish = False
 
 
 def crypto(name, shift, oper):
     cipher_text = ""
+    if oper == 'decrypt':
+        # new_position = sum([position,shift])
+        shift *= -1
     for letter in name:
         position = alphabet.index(letter)
         # print(position)
-        if oper == 'encrypt':
-            new_position = sum([position,shift])
-        else:
-            new_position = position - shift
+
+        new_position = position + shift
 
         new_letter = alphabet[new_position]
         cipher_text += new_letter
