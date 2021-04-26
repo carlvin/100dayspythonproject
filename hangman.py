@@ -76,7 +76,6 @@ while "_" in display and lives != 0:
     # check if guess exists in a chosen word
     for position, letter in enumerate(chosen_word):
         if letter == guess:
-            # print(f'yes{pos}')
             display[position] = letter
 
     if guess not in chosen_word:
